@@ -11,8 +11,8 @@ namespace Infrastructure.Data
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _context;
-        public BaseRepository(DbContext context)
+        private readonly ApplicationDbContext _context;
+        public BaseRepository(ApplicationDbContext context)
         {
             _context = context;
         }
