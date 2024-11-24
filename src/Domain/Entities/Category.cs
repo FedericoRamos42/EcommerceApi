@@ -12,6 +12,6 @@ namespace Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public Product? Product { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

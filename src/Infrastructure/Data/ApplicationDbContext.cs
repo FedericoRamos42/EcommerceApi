@@ -67,9 +67,9 @@ namespace Infrastructure.Data
                 .WithMany(p => p.OrderDetailsList);
 
             modelBuilder.Entity<Product>()
-            .HasOne(p => p.Category)      
-            .WithOne(c => c.Product)       
-            .HasForeignKey<Product>("CategoryId");
+            .HasOne(p => p.Category) 
+            .WithMany(c => c.Products)
+            .IsRequired();
             base.OnModelCreating(modelBuilder);
         }
 
