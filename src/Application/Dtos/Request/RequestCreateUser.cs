@@ -1,5 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Enums;
+using Domain.Exceptions;
+using MediaBrowser.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

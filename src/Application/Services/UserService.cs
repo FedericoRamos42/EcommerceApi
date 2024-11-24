@@ -1,15 +1,10 @@
 ﻿using Application.Dtos;
 using Application.Dtos.Request;
 using Application.Interfaces;
-using Domain.Entities;
+using Domain.Enums;
 using Domain.Exceptions;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Application.Services
 {
@@ -23,6 +18,12 @@ namespace Application.Services
 
         public async Task CreateUser(RequestCreateUser request)
         {
+            if (request == null) throw new NotFoundException("Request is null");
+
+            if (!Enum.IsDefined(typeof(Role), request.Role))
+            {
+                throw new NotFoundException($"Invalid role: {request.Role}");
+            }
             var user = RequestCreateUser.ToEntity(request);
             await _userRepository.Create(user);
         }
@@ -51,6 +52,12 @@ namespace Application.Services
                 throw new NotFoundException($"The user with id {id} does not exist");
             }
             return UserDto.CreateDto(user);
+        }
+
+        public async Task<IEnumerable<UserDto>>? GetUsersByRol(string Role)
+        {
+            var list =  await _userRepository.Search(u=> u.Role.ToString() == Role);
+            return UserDto.CreateList(list);
         }
     }
 }
