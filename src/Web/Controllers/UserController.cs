@@ -1,4 +1,5 @@
-﻿using Application.Dtos.Request;
+﻿using Application.Dtos;
+using Application.Dtos.Request;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,37 +19,37 @@ namespace Web.Controllers
         }
         
         [HttpGet("ById/{id}")]
-        public IActionResult GetById(int id) 
+        public async Task<ActionResult<UserDto>> GetById(int id) 
         {
-            var user = _userService.GetUserById(id);
+            var user = await _userService.GetUserById(id);
             return Ok(user);
         }
 
         [HttpGet("AllUsers")]
-        public IActionResult GetAll() 
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAll() 
         {
-            var users = _userService.GetAllUsers();
+            var users = await _userService.GetAllUsers();
             return Ok(users);
         }
 
         [HttpPost]
-        public IActionResult PostUser(RequestCreateUser request) 
+        public async Task<ActionResult> PostUser(RequestCreateUser request) 
         {
-            _userService.CreateUser(request);
+            await _userService.CreateUser(request);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public async Task<ActionResult> DeleteUser(int id)
         {
-            _userService.DeleteUser(id);
+            await _userService.DeleteUser(id);
             return NoContent();
         }
 
         [HttpGet("ByRole/{role}")]
-        public IActionResult SearchByRole(string role) 
+        public async Task<ActionResult> SearchByRole(string role) 
         {
-            var listUsers = _userService.GetUsersByRol(role);
+            var listUsers = await _userService.GetUsersByRol(role);
             return Ok(listUsers);
         }
     }

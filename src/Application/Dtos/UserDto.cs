@@ -14,9 +14,9 @@ namespace Application.Dtos
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public Role Role { get; set; }
-        public Status Status { get; set; } = Status.Active;
-        public List<Order> OrdersList { get; set; } = new List<Order>();
+        public string Role { get; set; }
+        public string Status { get; set; }
+        //public List<Order> OrdersList { get; set; } = new List<Order>();
 
         public static UserDto CreateDto(User user)
         {
@@ -25,8 +25,8 @@ namespace Application.Dtos
                 Id = user.Id,
                 FullName = user.FullName,
                 Email = user.Email,
-                Role = user.Role,
-                Status = user.Status,
+                Role = user.Role.ToString(),
+                Status = user.Status.ToString(),
             };
             return dto;
         }
