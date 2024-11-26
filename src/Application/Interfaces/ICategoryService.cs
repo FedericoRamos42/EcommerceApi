@@ -10,9 +10,9 @@ namespace Application.Interfaces
 {
     public interface ICategoryService
     {
-        public Task CreateCategory(string categoryName);
-        public Task<IEnumerable<CategoryDto>>GetCategories();
-        public Task DeleteCategory(int id);
+        Task CreateCategory(string categoryName);
+        Task<IEnumerable<CategoryDto>>GetCategories();
+        Task DeleteCategory(int id);
 
     }
 }

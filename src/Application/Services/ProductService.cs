@@ -54,5 +54,21 @@ namespace Application.Services
             }
             return ProductDto.CreateDto(product);
         }
+
+        public async Task UpdateStock(RequestUpdateProductStock request)
+        {
+            var product =  await _productRepository.GetById(request.ProductId);
+            if (product == null)
+            {
+                throw new NotFoundException($"The product with id {request.ProductId} that not exist ");
+            }
+            if (request.Stock < 0)
+            {
+                throw new NotFoundException($"The product cannot have a stock less than 0");
+            }
+
+            product.Stock = request.Stock;
+            await _productRepository.Update(product);
+        }
     }
 }

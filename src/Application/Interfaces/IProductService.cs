@@ -14,6 +14,7 @@ namespace Application.Interfaces
         Task<IEnumerable<ProductDto>> GetAll();
         Task CreateProduct(RequestCreateProduct request);
         Task DeleteProduct(int id);
+        Task UpdateStock(RequestUpdateProductStock request);
 
     }
 }
