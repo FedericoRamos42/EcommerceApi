@@ -9,6 +9,7 @@ namespace Application.Interfaces
         Task<IEnumerable<OrderDto>> GetAllOrders();
         Task CreateOrder (RequestCreateOrder orderDto);
         Task CanceledOrder (int id);
+        Task<IEnumerable<OrderDto>> FilterByStatus(string status);
         
     }
 }

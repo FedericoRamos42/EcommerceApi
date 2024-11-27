@@ -44,6 +44,8 @@ namespace Application.Services
             var list = await _orderRepository.GetAllWithOrderDetails();
             return OrderDto.ToList(list);
         }
+
+
         public async Task CreateOrder(RequestCreateOrder orderDto)
         {
             var user = await _userRepository.GetById(orderDto.UserId);
@@ -118,5 +120,6 @@ namespace Application.Services
             await _orderRepository.Update(order);
         }
 
+        
     }
 }
