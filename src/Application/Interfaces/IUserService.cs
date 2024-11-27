@@ -12,10 +12,10 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
-        public Task CreateUser(RequestCreateUser request);
-        public Task DeleteUser(int id);
-        public Task<UserDto> GetUserById(int id);
-        public Task<IEnumerable<UserDto>>? GetAllUsers();
-        public Task<IEnumerable<UserDto>>? GetUsersByRol(string Role);
+        Task CreateUser(RequestCreateUser request);
+        Task DeleteUser(int id);
+        Task<UserDto> GetUserById(int id);
+        Task<IEnumerable<UserDto>>? GetAllUsers();
+        Task<IEnumerable<UserDto>>? GetUsersByRol(string Role);
     }
 }
