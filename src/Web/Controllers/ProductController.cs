@@ -19,37 +19,37 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ProductDto> GetProduct(int id) 
+        public async Task <ActionResult<ProductDto>> GetProduct(int id) 
         {
-            var product = _productService.GetById(id);
+            var product = await  _productService.GetById(id);
             return Ok(product);
         }
 
-        [HttpGet("AllUsers")]
-        public ActionResult<IEnumerable<ProductDto>> GetProducts() 
+        [HttpGet("AllProducts")]
+        public async Task <ActionResult<IEnumerable<ProductDto>>> GetProducts() 
         {
-            var products = _productService.GetAll();
+            var products = await _productService.GetAll();
             return Ok(products);
         }
 
         [HttpPost]
-        public ActionResult CreateProduct(RequestCreateProduct product) 
+        public async Task<ActionResult> CreateProduct(RequestCreateProduct product) 
         {
-            _productService.CreateProduct(product);
+            await _productService.CreateProduct(product);
             return NoContent();
         }
 
         [HttpPut("UpdateStock")]
-        public ActionResult UpdateProduct(RequestUpdateProductStock request) 
+        public async Task<ActionResult> UpdateProduct(RequestUpdateProductStock request) 
         {
-            _productService.UpdateStock(request);
+            await _productService.UpdateStock(request);
             return NoContent();
         }
 
         [HttpDelete]
-        public ActionResult DeleteProduct(int id) 
+        public async Task <ActionResult> DeleteProduct(int id) 
         {
-            _productService.DeleteProduct(id);
+            await _productService.DeleteProduct(id);
             return NoContent();
         }
 

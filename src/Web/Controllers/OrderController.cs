@@ -20,33 +20,32 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<OrderDto> GetwithDetails(int id)
+        public async Task<ActionResult<OrderDto>> GetwithDetails(int id)
         {
-            var order = _orderService.GetOrderWithDetails(id);
+            var order = await _orderService.GetOrderWithDetails(id);
             return Ok(order);
         }
 
         [HttpGet("GetOrders")]
-        public ActionResult<IEnumerable<OrderDto>> GetAll()
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll()
         {
-            var orderList = _orderService.GetAllOrders();
+            var orderList = await _orderService.GetAllOrders();
             return Ok(orderList);
         }
 
         [HttpPost]
-        public ActionResult Post(RequestCreateOrder request)
+        public async Task<ActionResult> Post(RequestCreateOrder request)
         {
-            _orderService.CreateOrder(request);
+            await _orderService.CreateOrder(request);
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id) 
+        public async Task<ActionResult> Put(int id)
         {
-            _orderService.CanceledOrder(id);
+            await _orderService.CanceledOrder(id);
             return NoContent();
         }
-
 
     }
 }

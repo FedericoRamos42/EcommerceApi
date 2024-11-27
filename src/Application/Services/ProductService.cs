@@ -41,13 +41,13 @@ namespace Application.Services
 
         public async Task<IEnumerable<ProductDto>> GetAll()
         {
-           var list = await _productRepository.GetAll();
+           var list = await _productRepository.GetAllWithCategory();
             return ProductDto.CreateList(list);
         }
 
         public async Task<ProductDto> GetById(int id)
         {
-           var product = await  _productRepository.GetById(id);
+           var product = await  _productRepository.GetByIdWithCategory(id);
             if(product == null)
             {
                 throw new NotFoundException($"The product with id {id} that not exist ");

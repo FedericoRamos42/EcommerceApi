@@ -11,7 +11,7 @@ namespace Application.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Product> Products = new List<Product>();
+        //public List<Product> Products = new List<Product>();
         public static CategoryDto CreateDto(Category category)
         {
             CategoryDto dto = new ()

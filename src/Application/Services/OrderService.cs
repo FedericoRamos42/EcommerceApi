@@ -77,7 +77,8 @@ namespace Application.Services
                 OrderDetail detail = new()
                 {
                     Product = entity,
-                    Quantity = product.Quantiity
+                    Quantity = product.Quantiity,
+                    Total = entity.Price * product.Quantiity
                 };
 
                 detailsOrder.Add(detail);

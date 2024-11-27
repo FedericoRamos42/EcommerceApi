@@ -23,7 +23,7 @@ namespace Application.Dtos.Request
         [Required]
         public int IdCategory { get; set; }
 
-        public static Product ToEntity (RequestCreateProduct dto, Category category)
+        public static Product ToEntity(RequestCreateProduct dto, Category category)
         {
             return new Product
             {
@@ -34,5 +34,6 @@ namespace Application.Dtos.Request
                 Image = dto.Image,
                 Category = category,
             };
+        }
     }
 }

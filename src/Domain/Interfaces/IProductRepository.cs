@@ -9,6 +9,7 @@ namespace Domain.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
-        
+        Task<IEnumerable<Product>> GetAllWithCategory();
+        Task<Product> GetByIdWithCategory(int id);
     }
 }

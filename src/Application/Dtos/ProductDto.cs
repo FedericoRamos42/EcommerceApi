@@ -20,7 +20,7 @@ namespace Application.Dtos
         public string Image { get; set; } = string.Empty;
         public CategoryDto Category { get; set; } = new CategoryDto();
         public string Status { get; set; } = string.Empty;
-        //public List<OrderDetail> OrderDetailsList { get; set; } = new List<OrderDetail>();
+        
 
         public static ProductDto CreateDto (Product product)
         {

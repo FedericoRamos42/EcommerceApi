@@ -22,6 +22,7 @@ namespace Infrastructure.Data
         {
             var order = await _context.Orders
                                 .Include(o => o.Details)
+                                .ThenInclude(o=> o.Product)
                                 .FirstOrDefaultAsync(o => o.Id == id);
 
             return order;                             

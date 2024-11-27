@@ -17,23 +17,23 @@ namespace Web.Controllers
         }
 
         [HttpGet("AllCategories")]
-        public ActionResult<IEnumerable<CategoryDto>> GetCategories() 
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories() 
         {
-            var list = _categoryService.GetCategories();
+            var list = await _categoryService.GetCategories();
             return Ok(list);
         }
 
         [HttpPost]
-        public ActionResult CreateCategory(string nameCategory)
+        public async Task <ActionResult> CreateCategory(string nameCategory)
         {
-            _categoryService.CreateCategory(nameCategory);
+            await _categoryService.CreateCategory(nameCategory);
             return NoContent();
         }
 
         [HttpDelete]
-        public ActionResult DeleteCategory(int id) 
+        public async Task<ActionResult> DeleteCategory(int id) 
         {
-            _categoryService.DeleteCategory(id);
+            await _categoryService.DeleteCategory(id);
             return NoContent();
         }
         
