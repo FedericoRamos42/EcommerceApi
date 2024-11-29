@@ -3,6 +3,7 @@ using Application.Services;
 using Domain.Exceptions;
 using Domain.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.PaymentProvider.MercadoPago;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
@@ -37,6 +38,8 @@ builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IOrderRepository,OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailsRepository>();
 builder.Services.AddScoped<IOrderService,OrderService>();
+builder.Services.AddScoped<IMercadoPagoProvider,MercadoPagoProvider>();
+builder.Services.AddScoped<PaymentProviderService>();
 #endregion
 
 
@@ -50,9 +53,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseMiddleware<ExceptionMiddleware>();
-app.UseHttpsRedirection();
 
+app.UseMiddleware<ExceptionMiddleware>();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();

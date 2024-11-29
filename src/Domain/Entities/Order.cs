@@ -16,6 +16,7 @@ namespace Domain.Entities
         public decimal TotalPrice { get; set; }
         public DateTime DateTime { get; set; } = DateTime.UtcNow;
         public StatusOrder StatusOrder { get; set; } = StatusOrder.Pending;
+        public Payment Payment { get; set; }
         public List<OrderDetail> Details { get; set; } = new List<OrderDetail>();    
     }
 }

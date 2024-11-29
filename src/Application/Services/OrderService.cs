@@ -120,6 +120,9 @@ namespace Application.Services
             await _orderRepository.Update(order);
         }
 
-        
+        public Task<IEnumerable<OrderDto>> FilterByStatus(string status)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

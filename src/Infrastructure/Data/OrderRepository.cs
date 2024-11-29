@@ -21,6 +21,7 @@ namespace Infrastructure.Data
         public async Task<Order> GetByIdWithOrderDetails(int id)
         {
             var order = await _context.Orders
+                                .Include(u=> u.User)
                                 .Include(o => o.Details)
                                 .ThenInclude(o=> o.Product)
                                 .FirstOrDefaultAsync(o => o.Id == id);

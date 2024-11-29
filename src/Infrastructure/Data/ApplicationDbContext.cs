@@ -70,6 +70,12 @@ namespace Infrastructure.Data
             .HasOne(p => p.Category) 
             .WithMany(c => c.Products)
             .IsRequired();
+
+            modelBuilder.Entity<Order>()
+           .HasOne(o => o.Payment)
+           .WithOne(p => p.Order)
+           .HasForeignKey<Payment>(p => p.OrderId);
+
             base.OnModelCreating(modelBuilder);
         }
 

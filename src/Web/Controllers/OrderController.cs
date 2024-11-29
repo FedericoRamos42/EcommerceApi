@@ -26,7 +26,7 @@ namespace Web.Controllers
             return Ok(order);
         }
 
-        [HttpGet("GetOrders")]1
+        [HttpGet("GetOrders")]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll()
         {
             var orderList = await _orderService.GetAllOrders();
