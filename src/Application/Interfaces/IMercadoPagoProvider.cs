@@ -1,4 +1,6 @@
-﻿using MercadoPago.Client.Preference;
+﻿using Application.Dtos.Response;
+using Domain.Entities;
+using MercadoPago.Client.Preference;
 using MercadoPago.Resource.Preference;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,8 @@ namespace Application.Interfaces
 {
     public interface IMercadoPagoProvider
     {
-        Task<Preference> CreatePaymentPreferenceAsync(PreferenceRequest request);
+        Task<Preference> CreatePaymentPreferenceAsync(Order order);
+        Task<PaymentResponseDto> ProccesNotification(string id);
 
     }
 }

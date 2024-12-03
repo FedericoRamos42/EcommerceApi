@@ -1,8 +1,10 @@
-﻿using Application.Services;
+﻿using Application.Dtos;
+using Application.Services;
 using MercadoPago.Resource.Preference;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Web.Controllers
 {
@@ -11,30 +13,25 @@ namespace Web.Controllers
     public class PaymentController : ControllerBase
     {
         private readonly PaymentProviderService _provider;
-
-        public PaymentController(PaymentProviderService provider)
+        private readonly ILogger<PaymentController> _logger;
+        public PaymentController(PaymentProviderService provider,ILogger<PaymentController> logger)
         {
             _provider = provider;
+            _logger = logger;
         }
 
         [HttpPost("{id}")]
-        public async Task<Preference> CreatePayment(int id)
+        public async Task<string> CreatePayment(int id)
         {
-            var redirectUrl = await _provider.ProccessPaymentAsync(id);
-           return redirectUrl;
-        }
-        [HttpGet("success")]
-        public IActionResult Success([FromQuery] string external_reference)
-        {
-           
-            return Ok(new { Status = "Success", Reference = external_reference });
+            var redirectUrl = await _provider.CreatePayment(id);
+           return redirectUrl.SandboxInitPoint;
         }
 
-        [HttpGet("failure")]
-        public IActionResult Failure([FromQuery] string external_reference)
+        [HttpPost("webhook")]
+        public IActionResult Notification([FromBody] NotificationDto body)
         {
-            
-            return Ok(new { Status = "Failure", Reference = external_reference });
+            var response = _provider.GetStatusNotification(body.Data.Id);
+            return Ok(response);
         }
     }
 }
